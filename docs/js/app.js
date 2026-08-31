@@ -1,4 +1,4 @@
-const DATA_URL="data/benchmark.csv";
+const DATA_URL = "data/benchmark.csv";
 let data=[],filtered=[];
 
 const $=id=>document.getElementById(id);
