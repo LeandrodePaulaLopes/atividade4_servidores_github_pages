@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Benchmark de servidores Single-Thread e Multi-Thread">
+<title>Atividade 4 | Single vs Multi</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="hero">
+<nav class="nav container">
+  <div class="brand">ATIVIDADE <b>04</b></div>
+  <div class="navlinks"><a href="#conceito">Conceito</a><a href="#benchmark">Benchmark</a><a href="#graficos">Gráficos</a><a href="#analise">Análise</a></div>
+</nav>
+<div class="hero-content container">
+  <p class="eyebrow">PROGRAMAÇÃO CONCORRENTE</p>
+  <h1>Single-Thread <em>vs</em><br>Multi-Thread</h1>
+  <p class="lead">Uma análise experimental de tempo de resposta, throughput, CPU e memória em dois modelos de processamento de requisições.</p>
+  <div class="actions"><a class="btn primary" href="#benchmark">Ver benchmark</a><a class="btn" href="https://github.com/" target="_blank">Código no GitHub</a></div>
+</div>
+</header>
+
+<main>
+<section id="conceito" class="section container">
+<div class="heading"><p class="eyebrow">01 / CONCEITO</p><h2>Dois modelos, uma mesma carga.</h2><p>O mesmo conjunto de requisições é processado de forma sequencial e concorrente.</p></div>
+<div class="cards">
+<article class="card"><small>MODELO 01</small><h3>Single-Thread</h3><p>Uma thread atende uma requisição por vez.</p><div class="flow"><span>R1</span>→<span>R2</span>→<span>R3</span>→<span>R4</span></div><ul><li>Simples</li><li>Previsível</li><li>Menor complexidade</li></ul></article>
+<article class="card lime"><small>MODELO 02</small><h3>Multi-Thread</h3><p>Um pool de threads processa várias requisições concorrentemente.</p><div class="flow"><span>R1</span><span>R2</span><span>R3</span><span>R4</span></div><ul><li>Concorrente</li><li>Bom para I/O</li><li>Maior uso de recursos</li></ul></article>
+</div>
+</section>
+
+<section id="benchmark" class="dark section">
+<div class="container">
+<div class="heading light"><p class="eyebrow">02 / BENCHMARK</p><h2>Resultados experimentais.</h2><p>Os dados são carregados de <code>data/benchmark.csv</code>.</p></div>
+<div class="controls">
+<label>Requisições<select id="requestFilter"><option value="all">Todas</option></select></label>
+<label>Repetição<select id="repFilter"><option value="avg">Média</option></select></label>
+<button id="reset" class="btn">Limpar filtros</button>
+</div>
+<div class="stats">
+<div><small>MELHOR TEMPO</small><strong id="bestTime">—</strong><span id="bestTimeLabel">—</span></div>
+<div><small>MELHOR THROUGHPUT</small><strong id="bestThroughput">—</strong><span id="bestThroughputLabel">—</span></div>
+<div><small>MAIOR CARGA</small><strong id="totalRequests">—</strong><span>requisições</span></div>
+<div><small>THREADS MULTI</small><strong id="workerCount">—</strong><span>workers</span></div>
+</div>
+<div class="table-wrap"><table><thead><tr><th>Modelo</th><th>Req.</th><th>Tempo</th><th>Média</th><th>Throughput</th><th>CPU</th><th>Memória</th></tr></thead><tbody id="body"></tbody></table></div>
+</div>
+</section>
+
+<section id="graficos" class="section container">
+<div class="heading"><p class="eyebrow">03 / VISUALIZAÇÃO</p><h2>Desempenho em perspectiva.</h2><p>Gráficos desenhados em JavaScript Canvas.</p></div>
+<div class="charts">
+<article><h3>Tempo total × requisições</h3><canvas id="timeChart"></canvas></article>
+<article><h3>Throughput × requisições</h3><canvas id="throughputChart"></canvas></article>
+<article><h3>CPU média</h3><canvas id="cpuChart"></canvas></article>
+<article><h3>Memória média</h3><canvas id="memoryChart"></canvas></article>
+</div>
+</section>
+
+<section id="analise" class="analysis section">
+<div class="container analysis-grid"><div><p class="eyebrow">04 / ANÁLISE</p><h2>O resultado depende do workload.</h2></div><div class="copy"><p>Em operações com espera de I/O, o Multi-Thread pode reduzir o tempo total porque outras threads continuam trabalhando enquanto uma delas aguarda.</p><p>Em tarefas CPU-bound, o comportamento pode ser diferente. No CPython, o GIL pode limitar o ganho de múltiplas threads.</p><div class="conclusion"><b>Conclusão:</b> Single-Thread privilegia simplicidade; Multi-Thread privilegia concorrência, especialmente quando há espera de I/O.</div></div></div>
+</section>
+</main>
+<footer><div class="container"><span>Atividade 4 — Servidores Single-Thread e Multi-Thread</span><span>Python + HTML + CSS + JS</span></div></footer>
+<script src="js/app.js"></script>
+</body>
+</html>
