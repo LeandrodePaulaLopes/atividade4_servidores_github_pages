@@ -59,7 +59,7 @@ def main():
     parser.add_argument("--workers", type=int,
                         default=min(16, (os.cpu_count() or 2) + 4))
     parser.add_argument("--output", type=Path,
-                        default=ROOT / "site" / "data" / "benchmark.csv")
+                        default=ROOT / "docs" / "data" / "benchmark.csv")
     args = parser.parse_args()
     executar_benchmark(args.requests, args.repetitions, args.workers, args.output)
 
