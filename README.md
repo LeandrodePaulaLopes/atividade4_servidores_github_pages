@@ -8,7 +8,7 @@ pip install -r requirements.txt
 python src/benchmark.py
 ```
 
-O benchmark grava os resultados diretamente em `site/data/benchmark.csv`.
+O benchmark grava os resultados diretamente em `docs/data/benchmark.csv`.
 
 Exemplo:
 ```bash
