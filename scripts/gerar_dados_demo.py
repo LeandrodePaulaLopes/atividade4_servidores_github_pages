@@ -2,7 +2,7 @@ from pathlib import Path
 import csv
 import random
 
-saida = Path(__file__).resolve().parents[1] / "site" / "data" / "benchmark.csv"
+saida = Path(__file__).resolve().parents[1] / "docs" / "data" / "benchmark.csv"
 saida.parent.mkdir(parents=True, exist_ok=True)
 random.seed(4)
 
